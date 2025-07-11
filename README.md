@@ -1,6 +1,6 @@
 # Playwright Testing Setup
 
-This project is set up for end-to-end testing using [Playwright](https://playwright.dev/), a modern testing framework that supports testing across multiple browsers.
+This project is set up for end-to-end testing using [Playwright](https://playwright.dev/), a modern testing framework that supports testing across multiple browsers.  It's an experiment in using an MPC agent - in conjunction with the Cursor editor - to autogenerate playwright tests.
 
 ## Features
 
