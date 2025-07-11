@@ -1,0 +1,67 @@
+RULE: Playwright Test Generation Best Practices
+
+When generating any new automated test, follow these enforced rules:
+
+1. **Use Role-Based Locators**  
+   - All element selection must use modern, semantic locators such as `getByRole`, `getByLabelText`, or similar role-based strategies.
+   - Avoid brittle selectors like CSS class names, IDs, or XPath unless explicitly necessary.
+   - Example:  
+     ❌ `page.locator("div.button")`  
+     ✅ `page.getByRole("button", { name: "Submit" })`
+
+2. **Comment Every Line of the Test**  
+   - Each actionable step in the test must be accompanied by a comment explaining what it does and why. If multiple lines perform a single conceptual step (e.g., a login flow), a single comment may cover the block.
+   - Example:
+     ```ts
+     // Navigate to the login page
+     await page.goto("https://example.com/login");
+
+     // Fill in the username field
+     await page.getByRole("textbox", { name: "Username" }).fill("testuser");
+     ```
+
+3. **Include Gherkin Scenario as a Doc Block**  
+   - At the top of each test file, include a doc comment block (`/** ... */`) that contains the Gherkin `Feature` and `Scenario` for the test.
+   - This describes the test's behavior at a high level in Given/When/Then format.
+   - Example:
+     ```ts
+     /**
+      * Feature: Login
+      * Scenario: Successful login
+      *   Given the user is on the login page
+      *   When the user enters valid credentials
+      *   Then the user should be redirected to the dashboard
+      */
+     ```
+
+4. **Include Data in Gherkin as a Table or File Reference**
+   - If the scenario under test includes a data-driven component, include that data in the Gherkin block.
+   - If the dataset includes 10 or fewer items:
+     - Use an `Examples` table in the Gherkin block.
+     - Use the snippet `playwright-test-table` (trigger prefix: `playwright-test-table`).
+   - If the dataset includes more than 10 items:
+     - Use a reference to a `.jsonl` file in the Gherkin block.
+     - Use the snippet `playwright-test-filedata` (trigger prefix: `playwright-test-filedata`).
+   - When referencing a file:
+     - Include the filename in the Gherkin block as a comment or note.
+     - Use `.jsonl` format: one JSON object per line.
+     - The filename should reflect the scenario’s intent, using lowercase snake_case (e.g., `login_credentials.jsonl`).
+
+5. **Store Test Files Properly**  
+   - All tests must be saved in the `tests/` directory.
+   - Each test file should live inside a subdirectory corresponding to its functional area (e.g., `tests/auth/`, `tests/shopping_cart/`, `tests/dashboard/`).
+   - File names must reflect the scenario being tested using lowercase and underscores.
+   - Example:  
+     ✅ `tests/auth/login_success.spec.ts`  
+     ✅ `tests/cart/add_item_to_cart.spec.ts`
+
+6. **Use Clear and Consistent Assertions**  
+   - Always assert meaningful postconditions such as URL redirects, visible elements, or expected data.
+   - Prefer built-in Playwright `expect(...)` assertions over raw conditionals.
+   - Example:  
+     ✅ `await expect(page).toHaveURL("https://example.com/dashboard")`  
+     ✅ `await expect(page.getByRole("heading", { name: "Welcome" })).toBeVisible()`
+
+These rules apply to all test generation prompts. Do not bypass them unless explicitly instructed.
+
+END RULE

@@ -1,0 +1,35 @@
+{
+    "name": "Playwright Test with Gherkin",
+    "prefix": "playwright-test",
+    "description": "Scaffold for a Playwright test using best practices (Gherkin, role locators, full commenting)",
+    "body": [
+      "/**",
+      " * Feature: ${1:Login}",
+      " * Scenario: ${2:Successful login}",
+      " *   Given ${3:the user is on the login page}",
+      " *   When ${4:the user enters valid credentials}",
+      " *   Then ${5:the user should be redirected to the dashboard}",
+      "${6://   Examples table or data file reference (if needed)}",
+      " */",
+      "",
+      "import { test, expect } from '@playwright/test';",
+      "",
+      "test('${7:login success scenario}', async ({ page }) => {",
+      "  // Navigate to login page",
+      "  await page.goto('${8:https://example.com/login}');",
+      "",
+      "  // Fill in username",
+      "  await page.getByRole('textbox', { name: '${9:Username}' }).fill('${10:testuser}');",
+      "",
+      "  // Fill in password",
+      "  await page.getByRole('textbox', { name: '${11:Password}' }).fill('${12:secret}');",
+      "",
+      "  // Click login button",
+      "  await page.getByRole('button', { name: '${13:Log in}' }).click();",
+      "",
+      "  // Expect redirect to dashboard",
+      "  await expect(page).toHaveURL('${14:https://example.com/dashboard}');",
+      "});"
+    ]
+  }
+  

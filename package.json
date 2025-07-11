@@ -1,0 +1,25 @@
+{
+  "name": "playwright_agent",
+  "version": "1.0.0",
+  "description": "Playwright testing setup",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:chrome": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:safari": "playwright test --project=webkit",
+    "report": "playwright show-report",
+    "install-browsers": "playwright install",
+    "testplan": "node utilities/generate-testplan.js"
+  },
+  "keywords": ["playwright", "testing", "automation", "e2e"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.52.1"
+  }
+}
