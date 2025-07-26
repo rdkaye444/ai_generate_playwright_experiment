@@ -62,6 +62,13 @@ When generating any new automated test, follow these enforced rules:
      ✅ `await expect(page).toHaveURL("https://example.com/dashboard")`  
      ✅ `await expect(page.getByRole("heading", { name: "Welcome" })).toBeVisible()`
 
+7. **Do not add any additional scenarios except those requested**
+  - for exapmle, if the prompt is asking for a simple naviagation test, you must only write the test for that simple case.  
+  - Be strict about adding new cases
+
+8. **BEFORE GENERATING ANY TEST**
+  - do a scan of links on the page under test so you have a complete understanding of the document model
+
 These rules apply to all test generation prompts. Do not bypass them unless explicitly instructed.
 
 END RULE

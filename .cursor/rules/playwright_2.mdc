@@ -1,0 +1,123 @@
+---
+alwaysApply: false
+---
+
+Imagine you are an experienced Software Engineer helping me write high-quality Playwright test scripts in TypeScript based on the test cases I provided. Please go over the task twice to make sure the scripts are accurate and reliable. Avoid making things up and do no hallucinate. Use all the extra information outlined below, to write the best possible scripts, tailored for my project.
+
+# Project Context
+
+Look at the "Project_name" folder, to get more insights (if your project is quite large, use the below section to be more concrete and reference specific folders/files).
+
+My project structure includes:
+1. A /tests directory which contains test files
+2. A test_plan.md file which contains the gherkin description of each test, in sections separated by test area
+    Example:
+    **Authentication Tests**
+      ```ts
+     /**
+      * Feature: Login
+      * Scenario: Successful login
+      *   Given the user is on the login page
+      *   When the user enters valid credentials
+      *   Then the user should be redirected to the dashboard
+      */
+     ```   
+3. 
+
+# Test Structure Requirements
+
+For each test, please follow this structure:
+
+1.  Clear test description using *'test.describe()'* blocks
+
+2.  Proper authentication setup before any page navigation
+
+3.  Robust selector strategies with multiple fallbacks
+
+4.  Detailed logging for debugging
+
+5.  Screenshot captures at key points for verification
+
+6.  Proper error handling with clear error messages
+
+7.  Appropriate timeouts and wait strategies
+
+8.  Verification/assertion steps that match the test case acceptance criteria
+
+9. Include Gherkin Scenario as a Doc Block
+   - At the top of each test file, include a doc comment block (`/** ... */`) that contains the Gherkin `Feature` and `Scenario` for the test.
+   - This describes the test's behavior at a high level in Given/When/Then format.
+   - Example:
+     ```ts
+     /**
+      * Feature: Login
+      * Scenario: Successful login
+      *   Given the user is on the login page
+      *   When the user enters valid credentials
+      *   Then the user should be redirected to the dashboard
+      */
+     ```
+
+10. Include Data in Gherkin as a Table or File Reference
+   - If the scenario under test includes a data-driven component, include that data in the Gherkin block.
+   - If the dataset includes 10 or fewer items:
+     - Use an `Examples` table in the Gherkin block.
+     - Use the snippet `playwright-test-table` (trigger prefix: `playwright-test-table`).
+   - If the dataset includes more than 10 items:
+     - Use a reference to a `.jsonl` file in the Gherkin block.
+     - Use the snippet `playwright-test-filedata` (trigger prefix: `playwright-test-filedata`).
+   - When referencing a file:
+     - Include the filename in the Gherkin block as a comment or note.
+     - Use `.jsonl` format: one JSON object per line.
+     - The filename should reflect the scenario’s intent, using lowercase snake_case (e.g., `login_credentials.jsonl`).
+
+# Robustness Requirements
+
+Each test should include:
+
+1.  Retry mechanisms for flaky UI elements
+
+2.  Multiple selector strategies to find elements
+
+3.  Explicit waits for network idle and page load states
+
+4.  Clear logging of each test step
+
+5.  Detailed error reporting and screenshots on failure
+
+6.  Handling of unexpected dialogs or notifications
+
+7.  Timeout handling with clear error messages
+
+# Environmental Considerations
+
+The tests will run in:
+
+*   CI/CD pipeline environments
+
+*   Headless mode by default
+
+*   Potentially with network latency
+
+*   Different viewport sizes
+
+# Example Usage
+
+Please provide a complete implementation with:
+
+1.  Helper functions for authentication and common operations
+
+2.  Full test implementation for each test case
+
+3.  Comments explaining complex logic
+
+4.  Guidance on test execution
+
+
+# Configuration Reference
+
+For timeouts, screenshot settings, and other configuration options, please refer to:
+
+//playwright.config.js
+
+I want these tests to be maintainable, reliable, and provide clear feedback when they fail.
