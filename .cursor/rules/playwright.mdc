@@ -2,12 +2,15 @@ RULE: Playwright Test Generation Best Practices
 
 When generating any new automated test, follow these enforced rules:
 
-1. **Use Role-Based Locators**  
+1. **Use Modern Locators**  
    - All element selection must use modern, semantic locators such as `getByRole`, `getByLabelText`, or similar role-based strategies.
    - Avoid brittle selectors like CSS class names, IDs, or XPath unless explicitly necessary.
    - Example:  
      ❌ `page.locator("div.button")`  
      ✅ `page.getByRole("button", { name: "Submit" })`
+
+  - Use Robust selector strategies with multiple fallbacks
+
 
 2. **Comment Every Line of the Test**  
    - Each actionable step in the test must be accompanied by a comment explaining what it does and why. If multiple lines perform a single conceptual step (e.g., a login flow), a single comment may cover the block.

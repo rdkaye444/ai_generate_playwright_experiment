@@ -1,0 +1,35 @@
+Create a Playwright test following the rules in .cursor/rules/playwright.mdc that:
+
+**Functionality:**
+- Tests BoardGameGeek's search functionality at www.boardgamegeek.com
+- Searches for specific board game titles and validates search results
+- Verifies the search results display in a properly structured table format
+- Confirms each search result contains the searched game title (in game name links, not just anywhere in the row)
+
+**Data-Driven Requirements:**
+- Test with exactly 2 game titles: "Gloomhaven" and "Ticket to Ride"
+- Since ≤10 test cases, include data as Examples table in Gherkin documentation
+
+**Technical Specifications:**
+- Use ONLY modern semantic locators (getByRole, getByLabelText, etc.) - NO CSS selectors or XPath
+- Handle potential network delays without using networkidle (BGG has heavy ads/analytics)
+- Focus validation on game title links rather than parsing entire table rows
+- Limit result checking to first 5-10 items to avoid timeouts
+
+**File Structure:**
+- Place in tests/search/ directory
+- Use descriptive lowercase_underscore naming convention
+- Include complete Gherkin Feature/Scenario documentation with Given/When/Then
+
+**Validation Points:**
+1. Navigate to BoardGameGeek homepage
+2. Perform search using accessible search controls
+3. Verify search results contain a table structure  
+4. Confirm table has a "Title" column header
+5. Validate that game title links (not just any text) contain the searched term
+
+**Avoid Common Pitfalls:**
+- Don't use brittle CSS/ID selectors
+- Don't rely on networkidle waits
+- Don't add extra test scenarios beyond what's requested
+- Don't check entire row text - focus on specific game title elements
